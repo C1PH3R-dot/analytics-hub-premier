@@ -40,7 +40,7 @@ export function CustomerGallery() {
         </motion.button>
       </div>
 
-      <div className="flex items-center gap-4 overflow-x-auto pb-2 scrollbar-hide">
+      <div className="flex items-center gap-6 overflow-x-auto pb-2 scrollbar-hide">
         {customers.map((c, i) => (
           <motion.div
             key={c.id}
@@ -55,23 +55,24 @@ export function CustomerGallery() {
             <motion.div
               className="relative"
               animate={{
-                scale: hovered === c.id ? 1.15 : 1,
+                scale: hovered === c.id ? 1.12 : 1,
               }}
               transition={{ duration: 0.25, ease: "easeOut" }}
             >
               <img
                 src={c.src}
                 alt={c.name}
-                className="w-14 h-14 rounded-full object-cover avatar-glow"
+                className="w-16 h-16 rounded-full object-cover"
                 style={{
                   boxShadow: hovered === c.id
-                    ? "0 0 0 3px hsl(var(--accent)), 0 8px 24px hsl(var(--accent) / 0.35)"
-                    : "0 0 0 2px hsl(var(--primary) / 0.25), 0 4px 16px hsl(var(--primary) / 0.15)",
+                    ? "0 0 0 3px hsl(var(--accent)), 0 0 20px hsl(var(--accent) / 0.5), 0 8px 24px hsl(var(--primary) / 0.3)"
+                    : "0 0 0 2.5px hsl(var(--primary)), 0 0 12px hsl(var(--primary) / 0.4), 0 4px 16px hsl(var(--primary) / 0.2)",
+                  transition: "box-shadow 0.25s ease",
                 }}
               />
               {/* Online dot */}
               <span
-                className="absolute bottom-0.5 right-0.5 w-3 h-3 rounded-full border-2 border-card pulse-dot"
+                className="absolute bottom-0.5 right-0.5 w-3.5 h-3.5 rounded-full border-2 border-card pulse-dot"
                 style={{ background: "hsl(var(--accent))" }}
               />
             </motion.div>
