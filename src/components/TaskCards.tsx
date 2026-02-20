@@ -68,8 +68,8 @@ export function TaskCards() {
             className="relative flex items-center gap-4 px-5 py-4 rounded-xl overflow-hidden cursor-pointer group"
             style={{
               background: task.done
-                ? "linear-gradient(135deg, hsl(220 100% 50% / 0.6), hsl(210 100% 65% / 0.3))"
-                : "var(--gradient-task)",
+                ? "linear-gradient(90deg, hsl(220 100% 50% / 0.6), hsl(210 100% 82% / 0.25))"
+                : "linear-gradient(90deg, hsl(220 100% 45%), hsl(210 100% 70% / 0.55))",
               boxShadow: "0 4px 20px hsl(220 100% 50% / 0.25)",
             }}
           >
