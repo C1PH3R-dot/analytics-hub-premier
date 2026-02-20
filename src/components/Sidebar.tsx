@@ -8,6 +8,8 @@ import {
   Megaphone,
   ChevronRight,
   BarChart3,
+  Search,
+  Settings,
 } from "lucide-react";
 
 const navItems = [
@@ -96,6 +98,43 @@ export function Sidebar({ activeNav, setActiveNav, collapsed, setCollapsed }: Si
           );
         })}
       </nav>
+
+      {/* Utility Group */}
+      <div className="px-3 py-3 border-t border-border space-y-1">
+        {[
+          { label: "Search", icon: Search, path: "search" },
+          { label: "Settings", icon: Settings, path: "settings" },
+        ].map((item) => {
+          const isActive = activeNav === item.path;
+          return (
+            <motion.button
+              key={item.path}
+              onClick={() => setActiveNav(item.path)}
+              className={`
+                nav-lift w-full flex items-center gap-3 px-3 py-2.5 rounded-lg relative
+                transition-all duration-200 group
+                ${isActive
+                  ? "bg-primary text-primary-foreground shadow-blue"
+                  : "text-muted-foreground hover:text-navy hover:bg-secondary"
+                }
+              `}
+              whileTap={{ scale: 0.96 }}
+            >
+              <motion.div
+                animate={{ rotate: item.path === "settings" ? (isActive ? 90 : 0) : 0 }}
+                whileHover={{ rotate: item.path === "settings" ? 90 : 0 }}
+                transition={{ duration: 0.35 }}
+                className="flex-shrink-0"
+              >
+                <item.icon className={`w-5 h-5 ${isActive ? "text-primary-foreground" : ""}`} />
+              </motion.div>
+              {!collapsed && (
+                <span className="text-sm font-medium truncate">{item.label}</span>
+              )}
+            </motion.button>
+          );
+        })}
+      </div>
 
       {/* Collapse toggle */}
       <div className="p-3 border-t border-border">
