@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { TrendingUp } from "lucide-react";
+import { TrendingUp, Wallet } from "lucide-react";
 
 interface SparklineProps {
   color?: string;
@@ -96,6 +96,7 @@ interface OverviewCardProps {
   data?: number[];
   color?: string;
   delay?: number;
+  showWallet?: boolean;
 }
 
 export function OverviewCard({
@@ -107,6 +108,7 @@ export function OverviewCard({
   data,
   color = "hsl(220 100% 50%)",
   delay = 0,
+  showWallet = false,
 }: OverviewCardProps) {
   return (
     <motion.div
@@ -126,14 +128,30 @@ export function OverviewCard({
       <div className="flex items-start justify-between mb-4">
         <div>
           <p className="text-sm text-muted-foreground font-medium mb-1">{title}</p>
-          <motion.h2
-            className="text-3xl font-bold text-navy"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: delay + 0.2, duration: 0.4 }}
-          >
-            {value}
-          </motion.h2>
+          <div className="flex items-center gap-2">
+            {showWallet && (
+              <motion.div
+                initial={{ scale: 0, rotate: -15 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ delay: delay + 0.3, duration: 0.4, type: "spring" }}
+                className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+                style={{
+                  background: "linear-gradient(135deg, hsl(var(--primary) / 0.15), hsl(var(--cyan) / 0.25))",
+                  boxShadow: "0 0 12px hsl(var(--primary) / 0.2)",
+                }}
+              >
+                <Wallet className="w-4 h-4" style={{ color: "hsl(var(--primary))" }} />
+              </motion.div>
+            )}
+            <motion.h2
+              className="text-3xl font-bold text-navy"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: delay + 0.2, duration: 0.4 }}
+            >
+              {value}
+            </motion.h2>
+          </div>
         </div>
         <span
           className={`flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full ${
